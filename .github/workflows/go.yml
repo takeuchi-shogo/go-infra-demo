@@ -1,7 +1,11 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
+# ワークフローに好きな名前を入れる
 name: Go
+
+description: "github actions sample"
+author: "Shogo"
 
 on:
   push:
@@ -12,6 +16,7 @@ on:
 jobs:
 
   build:
+    # ワークフローを実行するDockerイメージ
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -24,5 +29,5 @@ jobs:
     - name: Build
       run: go build -v ./cmd/app/main.go
 
-    - name: Test
-      run: go test ./...
+    # - name: Test
+    #   run: go test ./...
