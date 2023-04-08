@@ -4,7 +4,7 @@
 # ワークフローに好きな名前を入れる
 name: Go
 
-description: "github actions sample"
+# description: "github actions sample"
 # author: "Shogo"
 
 on:
