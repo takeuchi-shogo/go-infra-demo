@@ -5,7 +5,7 @@
 name: Go
 
 description: "github actions sample"
-author: "Shogo"
+# author: "Shogo"
 
 on:
   push:
