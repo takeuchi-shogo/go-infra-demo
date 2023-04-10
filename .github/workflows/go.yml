@@ -16,6 +16,8 @@ on:
 jobs:
 
   build:
+    matrix:
+      go-version: [1.19.x, 1.20.x]
     # ワークフローを実行するDockerイメージ
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +26,13 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: '1.20'
+        go-version: ${{ matrix.go-version }}
+
+    - name: Install golangci-lint
+      run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.41.1
+
+    - name: Run golangci-lint
+      run: golangci-lint run
     
     - name: Fetch required Go modules
       run: go mod tidy

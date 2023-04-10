@@ -1,0 +1,41 @@
+run:
+  # 同時実行の使用可能なCPU数
+  concurrency: 4
+  # デフォルトは1m
+  timeout: 10m
+  issues-exit-code: 1
+  tests: true
+  skip-dirs:
+    - pkg
+  # 並列実行のインスタンスの許可
+  allow-parallel-runners: false
+
+
+linters-settings:
+  govet:
+    check-shadowing: true
+    settings:
+      printf:
+        funcs:
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Infof
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Warnf
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Errorf
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Fatalf
+      shadow:
+        strict: true
+
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - staticcheck
+    - unused
+    - gosimple
+    - gas
+    - structcheck
+    - varcheck
+    - unconvert
+    - ineffassign
+    - goconst
+    - govet
+    - deadconde

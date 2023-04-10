@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
+func router() *gin.Engine {
 	router := gin.Default()
 
 	router.GET("/", func(ctx *gin.Context) {
@@ -14,6 +14,9 @@ func main() {
 			"message": "Hello!!",
 		})
 	})
+	return router
+}
 
-	router.Run()
+func main() {
+	router().Run()
 }

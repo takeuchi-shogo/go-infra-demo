@@ -1,23 +1,20 @@
 package main
 
-// import "testing"
+import (
+	"net/http"
+	"net/http/httptest"
+	"testing"
 
-// func TestAdd(t *testing.T) {
-// 	tests := []struct {
-// 		name string
-// 		a    int
-// 		b    int
-// 		want int
-// 	}{
-// 		{name: "test1", a: 1, b: 2, want: 3},
-// 		{name: "test2", a: 1, b: 2, want: 2},
-// 		{name: "test3", a: 1, b: 3, want: 5},
-// 	}
+	"github.com/magiconair/properties/assert"
+)
 
-// 	for _, test := range tests {
-// 		got := Add(test.a, test.b)
-// 		if got != test.want {
-// 			t.Errorf("%v: want %v.but %v", test.name, test.want, got)
-// 		}
-// 	}
-// }
+func TestRouter(t *testing.T) {
+	router := router()
+	w := httptest.NewRecorder()
+
+	req, _ := http.NewRequest("GET", "/", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, w.Body.String(), "{\"message\":\"Hello!!\"}")
+}
