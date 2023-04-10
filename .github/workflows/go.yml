@@ -38,7 +38,7 @@ jobs:
       run: golangci-lint run
     
     - name: Fetch required Go modules
-      run: go mod tidy
+      run: go mod download
 
     - name: Build
       run: go build -o . ./cmd/app/main.go
