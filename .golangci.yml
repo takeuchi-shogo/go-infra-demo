@@ -12,6 +12,15 @@ run:
 
 
 linters-settings:
+  cyclop:
+    # 報告するコードの複雑さ
+    max-complexity: 10
+    # 最大の平均パッケージの複雑さ。 0.0 (float) より大きい場合、チェックが有効 (デフォルトは 0.0)
+    package-average: 0.0
+    skip-tests: false
+
+  
+
   govet:
     check-shadowing: true
     settings:
@@ -38,4 +47,4 @@ linters:
     - ineffassign
     - goconst
     - govet
-    - deadconde
+    - deadcode
