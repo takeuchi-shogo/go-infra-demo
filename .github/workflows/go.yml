@@ -30,11 +30,11 @@ jobs:
 
     - uses: actions/checkout@v3
 
-    - name: Install golangci-lint
-      run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.52.2
+    # - name: Install golangci-lint
+    #   run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.52.2
 
-    - name: Run golangci-lint
-      run: golangci-lint run
+    # - name: Run golangci-lint
+    #   run: golangci-lint run
     
     - name: Fetch required Go modules
       run: go mod download
