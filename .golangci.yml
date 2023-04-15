@@ -1,50 +1,27 @@
 run:
-  # 同時実行の使用可能なCPU数
   concurrency: 4
-  # デフォルトは1m
-  timeout: 10m
-  issues-exit-code: 1
-  tests: true
-  skip-dirs:
-    - pkg
-  # 並列実行のインスタンスの許可
-  allow-parallel-runners: false
 
+  deadline: 5m
+
+  issues-exit-code: 2
+
+  go: '1.19'
 
 linters-settings:
-  cyclop:
-    # 報告するコードの複雑さ
-    max-complexity: 10
-    # 最大の平均パッケージの複雑さ。 0.0 (float) より大きい場合、チェックが有効 (デフォルトは 0.0)
-    package-average: 0.0
-    skip-tests: false
-
-  
-
+  dupl:
+    threshold: 100
+  gofmt:
+    format-args: ["-s", "-d", "-e", "-extra", "-gap", "-local", ".", "-style", "{Indent: tab, Tabwidth: 4}"]
   govet:
     check-shadowing: true
-    settings:
-      printf:
-        funcs:
-          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Infof
-          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Warnf
-          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Errorf
-          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Fatalf
-      shadow:
-        strict: true
+  gocyclo:
+    min-complecity: 10
 
 linters:
   disable-all: true
   enable:
+    - dupl
     - errcheck
-    - staticcheck
-    - unused
-    - gosimple
-    - gas
-    - structcheck
-    - varcheck
-    - unconvert
-    - ineffassign
-    - goconst
+    - gocyclo
+    - gofmt
     - govet
-    - deadcode
